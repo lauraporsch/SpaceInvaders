@@ -13,16 +13,16 @@ class Score(Turtle):
         self.hideturtle()
         self.penup()
         self.goto(-380, 360)
-        self.update_scoreboard()
+        self.update()
 
-    def update_scoreboard(self):
+    def update(self):
         """clears ScoreBoard and writes new ScoreBoard with current score"""
         self.clear()
         self.write(f"Score: {self.score} | High Score: {self.high_score}", align="left", font=FONT)
 
-    def increase_score(self):
+    def increase(self):
         self.score += 20
-        self.update_scoreboard()
+        self.update()
 
 
 class Lives(Turtle):
@@ -33,18 +33,18 @@ class Lives(Turtle):
         self.hideturtle()
         self.penup()
         self.goto(400, 360)
-        self.update_lives()
+        self.update()
 
-    def update_lives(self):
+    def update(self):
         self.clear()
         current_lives = ""
         for heart in range(self.lives):
             current_lives += "❤️"
         self.write(f"{current_lives}", align="right", font=FONT)
 
-    def loose_life(self):
+    def loose(self):
         self.lives -= 1
-        self.update_lives()
+        self.update()
 
     def game_over(self):
         self.clear()

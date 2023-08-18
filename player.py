@@ -2,6 +2,7 @@ from turtle import Turtle
 
 STARTING_POSITION = (0, -370)
 MOVE_DISTANCE = 15
+SHOOT_DISTANCE = 30
 X_LEFT_SCREEN = -360
 X_RIGHT_SCREEN = 360
 
@@ -45,6 +46,6 @@ class Shooter(Turtle):
         self.goto(STARTING_POSITION)
 
     def move(self):
-        self.forward(MOVE_DISTANCE)
+        self.forward(SHOOT_DISTANCE)
 
 

@@ -17,6 +17,7 @@ class Aliens:
                 self.x += 50
             self.y -= 50
             self.x = -225
+        self.move_speed = MOVE_DISTANCE
 
     def create_aliens(self, position):
         alien = Turtle("turtle")
@@ -25,9 +26,9 @@ class Aliens:
         alien.goto(position)
         self.all_aliens.append(alien)
 
-    def move_aliens(self):
+    def move(self):
         for alien in self.all_aliens:
-            alien.forward(MOVE_DISTANCE)
+            alien.forward(self.move_speed)
         self.check_borders()
 
     def check_borders(self):
@@ -41,7 +42,10 @@ class Aliens:
                 alien.setheading(0)
                 alien.sety(alien.ycor() - MOVE_DOWN)
 
-    def aliens_win(self):
+    def increase_speed(self):
+        self.move_speed += 1
+
+    def win(self):
         bottom_screen = any(alien.ycor() < -360 for alien in self.all_aliens)
         for alien in self.all_aliens:
             if bottom_screen:
