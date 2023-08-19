@@ -2,7 +2,7 @@ from turtle import Turtle
 
 NUMBER_OF_ROWS = 4
 NUMBER_OF_ALIENS = 10
-MOVE_DISTANCE = 5
+MOVE_DISTANCE = 3
 MOVE_DOWN = 20
 
 
@@ -10,7 +10,7 @@ class Aliens:
     def __init__(self):
         self.all_aliens = []
         self.x = -225
-        self.y = 330
+        self.y = 310
         for line in range(NUMBER_OF_ROWS):
             for alien in range(NUMBER_OF_ALIENS):
                 self.create_aliens(position=(self.x, self.y))

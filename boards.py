@@ -20,9 +20,10 @@ class Score(Turtle):
         self.clear()
         self.write(f"Score: {self.score} | High Score: {self.high_score}", align="left", font=FONT)
 
-    def increase(self):
-        self.score += 20
+    def increase(self, points):
+        self.score += points
         self.update()
+
 
 
 class Lives(Turtle):

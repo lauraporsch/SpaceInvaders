@@ -33,9 +33,17 @@ def alien_gets_shot():
             aliens.all_aliens.remove(alien)
             alien.goto(-1000, -1000)
             shooter.hideturtle()
-            score.increase()
+            score.increase(20)
             if score.score != 0 and len(aliens.all_aliens) % 5 == 0:
                 aliens.increase_speed()
+
+
+def mystery_gets_shot():
+    if mystery.isvisible() and shooter.isvisible() and mystery.distance(shooter) < 50:
+        mystery.hideturtle()
+        shooter.hideturtle()
+        mystery_points = random.choice([50, 60, 70, 80, 90, 100])
+        score.increase(mystery_points)
 
 
 screen.listen()
@@ -50,16 +58,15 @@ while game_is_on:
     shooter.move()
     aliens.move()
     alien_gets_shot()
+    mystery.move()
+    mystery.trigger()
+    mystery_gets_shot()
 
-    if shooter.ycor() > 290:
+    if shooter.ycor() > 345:
         shooter.hideturtle()
 
     if lives.lives == 0 or aliens.win():
         lives.game_over()
 
-    random_chance = random.randint(1, 40)
-    if random_chance == 1:
-        move_speed = random.randint(2, 40)
-        mystery.move(move_speed)
 
 screen.exitonclick()
