@@ -46,6 +46,14 @@ def mystery_gets_shot():
         score.increase(mystery_points)
 
 
+def player_gets_shot():
+    for alien_shooter in aliens.all_shooters:
+        if alien_shooter.isvisible() and alien_shooter.distance(playership) < 20 and alien_shooter.ycor() < -370:
+            lives.loose()
+            playership.go_to_start()
+            alien_shooter.hideturtle()
+
+
 screen.listen()
 screen.onkeypress(playership.go_right, "Right")
 screen.onkeypress(playership.go_left, "Left")
@@ -57,10 +65,12 @@ while game_is_on:
     screen.update()
     shooter.move()
     aliens.move()
+    aliens.trigger_shooter()
     alien_gets_shot()
     mystery.move()
     mystery.trigger()
     mystery_gets_shot()
+    player_gets_shot()
 
     if shooter.ycor() > 345:
         shooter.hideturtle()

@@ -25,7 +25,6 @@ class Score(Turtle):
         self.update()
 
 
-
 class Lives(Turtle):
     def __init__(self):
         super().__init__()

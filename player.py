@@ -47,5 +47,3 @@ class Shooter(Turtle):
 
     def move(self):
         self.forward(SHOOT_DISTANCE)
-
-
