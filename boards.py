@@ -1,4 +1,5 @@
 from turtle import Turtle
+import time
 
 FONT = ("Courier", 20, "normal")
 
@@ -23,6 +24,14 @@ class Score(Turtle):
     def increase(self, points):
         self.score += points
         self.update()
+
+    def update_highscore(self):
+        if self.score > self.high_score:
+            self.high_score = self.score
+            with open("high-score.txt", mode="w") as file:
+                file.write(str(self.score))
+            self.score = 0
+            self.update()
 
 
 class Lives(Turtle):

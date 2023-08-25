@@ -5,7 +5,6 @@ WIDTH = 10
 STARTING_X = [-350, -150, 50, 250]
 
 
-
 class Barrier:
     def __init__(self):
         self.whole_barrier = []

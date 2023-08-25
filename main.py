@@ -12,9 +12,11 @@ screen.setup(width=800, height=800)
 screen.bgcolor("black")
 screen.tracer(0)
 
+STARTING_POSITION = 310
+
 playership = PlayerShip()
 shooter = Shooter()
-aliens = Aliens()
+aliens = Aliens(y=STARTING_POSITION)
 score = Score()
 lives = Lives()
 mystery = MysteryAlien()
@@ -30,14 +32,12 @@ def shoot():
 
 
 def alien_gets_shot():
-    for alien in aliens.all_aliens:
-        if shooter.isvisible() and alien.distance(shooter) < 20:
-            aliens.all_aliens.remove(alien)
-            alien.goto(-1000, -1000)
+    for shot_alien in aliens.all_aliens:
+        if shooter.isvisible() and shot_alien.distance(shooter) < 20:
+            aliens.all_aliens.remove(shot_alien)
+            shot_alien.goto(-1000, -1000)
             shooter.hideturtle()
             score.increase(20)
-            if score.score != 0 and len(aliens.all_aliens) % 5 == 0:
-                aliens.increase_speed()
 
 
 def mystery_gets_shot():
@@ -49,21 +49,21 @@ def mystery_gets_shot():
 
 
 def player_gets_shot():
-    for alien_shooter in aliens.all_shooters:
-        if alien_shooter.isvisible() and alien_shooter.distance(playership) < 20 and alien_shooter.ycor() < -370:
+    for alien_shot in aliens.all_shooters:
+        if alien_shot.isvisible() and alien_shot.distance(playership) < 20 and alien_shot.ycor() < -370:
             lives.loose()
             playership.go_to_start()
-            alien_shooter.hideturtle()
+            alien_shot.hideturtle()
             time.sleep(0.5)
 
 
 def barrier_gets_shot():
     for brick in barrier.whole_barrier:
         if brick.isvisible():
-            for alien_shooter in aliens.all_shooters:
-                if alien_shooter.isvisible() and alien_shooter.distance(brick) < 20:
+            for alien_shooting in aliens.all_shooters:
+                if alien_shooting.isvisible() and alien_shooting.distance(brick) < 20:
                     brick.hideturtle()
-                    alien_shooter.hideturtle()
+                    alien_shooting.hideturtle()
             if shooter.isvisible() and shooter.distance(brick) < 25:
                 brick.hideturtle()
                 shooter.hideturtle()
@@ -93,6 +93,18 @@ while game_is_on:
 
     if lives.lives == 0 or aliens.win():
         lives.game_over()
+        score.update_highscore()
+        for alien in aliens.all_aliens:
+            alien.hideturtle()
+        for alien_shooter in aliens.all_shooters:
+            alien_shooter.hideturtle()
+        mystery.hideturtle()
+
+    if not aliens.all_aliens:
+        STARTING_POSITION -= 50
+        for alien_shooter in aliens.all_shooters:
+            alien_shooter.hideturtle()
+        aliens = Aliens(y=STARTING_POSITION)
 
 
 screen.exitonclick()

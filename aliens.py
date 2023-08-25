@@ -2,19 +2,19 @@ from turtle import Turtle
 import random
 
 NUMBER_OF_ROWS = 4
-NUMBER_OF_ALIENS = 10
-MOVE_DISTANCE = 3
+NUMBER_OF_ALIENS = 11
+MOVE_DISTANCE = 2
 MOVE_DOWN = 20
 SHOOT_SPEED = 15
 STARTING_POSITION = (-225, 310)
 
 
 class Aliens:
-    def __init__(self):
+    def __init__(self, y):
         self.all_aliens = []
         self.all_shooters = []
         self.x = -225
-        self.y = 310
+        self.y = y
         for line in range(NUMBER_OF_ROWS):
             for alien in range(NUMBER_OF_ALIENS):
                 self.create_aliens(position=(self.x, self.y))
@@ -52,6 +52,8 @@ class Aliens:
     def check_borders(self):
         right_screen = any(alien.xcor() > 370 for alien in self.all_aliens)
         left_screen = any(alien.xcor() < -370 for alien in self.all_aliens)
+        if right_screen or left_screen:
+            self.increase_speed()
         for alien in self.all_aliens:
             if right_screen:
                 alien.setheading(180)
@@ -78,10 +80,13 @@ class Aliens:
             random_alien = random.choice(self.all_aliens)
             index = self.all_aliens.index(random_alien)
             random_shooter = self.all_shooters[index]
-            if not random_shooter.isvisible():
+            if not random_shooter.isvisible() and random_shooter.ycor() < -250:
+                random_shooter.goto(random_alien.xcor(), random_alien.ycor())
+                random_shooter.setheading(random_alien.heading())
+            elif not random_shooter.isvisible() and random_shooter.ycor() > -250:
                 random_shooter.setheading(270)
                 random_shooter.showturtle()
-            if random_shooter.ycor() < -380:
+            elif random_shooter.ycor() < -380:
                 random_shooter.hideturtle()
                 random_shooter.goto(random_alien.xcor(), random_alien.ycor())
                 random_shooter.setheading(random_alien.heading())
