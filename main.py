@@ -5,6 +5,7 @@ from player import PlayerShip, Shooter
 from aliens import Aliens
 from boards import Score, Lives
 from mystery_alien import MysteryAlien
+from barriers import Barrier
 
 screen = Screen()
 screen.setup(width=800, height=800)
@@ -17,6 +18,7 @@ aliens = Aliens()
 score = Score()
 lives = Lives()
 mystery = MysteryAlien()
+barrier = Barrier()
 
 
 def shoot():
@@ -52,6 +54,19 @@ def player_gets_shot():
             lives.loose()
             playership.go_to_start()
             alien_shooter.hideturtle()
+            time.sleep(0.5)
+
+
+def barrier_gets_shot():
+    for brick in barrier.whole_barrier:
+        if brick.isvisible():
+            for alien_shooter in aliens.all_shooters:
+                if alien_shooter.isvisible() and alien_shooter.distance(brick) < 20:
+                    brick.hideturtle()
+                    alien_shooter.hideturtle()
+            if shooter.isvisible() and shooter.distance(brick) < 25:
+                brick.hideturtle()
+                shooter.hideturtle()
 
 
 screen.listen()
@@ -71,6 +86,7 @@ while game_is_on:
     mystery.trigger()
     mystery_gets_shot()
     player_gets_shot()
+    barrier_gets_shot()
 
     if shooter.ycor() > 345:
         shooter.hideturtle()

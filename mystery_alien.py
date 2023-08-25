@@ -29,7 +29,3 @@ class MysteryAlien(Turtle):
             self.hideturtle()
             self.goto(STARTING_POINT)
             self.move_speed = MOVE_SPEED
-
-
-
-

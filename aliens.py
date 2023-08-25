@@ -81,10 +81,10 @@ class Aliens:
             if not random_shooter.isvisible():
                 random_shooter.setheading(270)
                 random_shooter.showturtle()
-                if random_shooter.ycor() < -380:
-                    random_shooter.hideturtle()
-                    random_shooter.goto(random_alien.xcor(), random_alien.ycor())
-                    random_shooter.setheading(random_alien.heading())
+            if random_shooter.ycor() < -380:
+                random_shooter.hideturtle()
+                random_shooter.goto(random_alien.xcor(), random_alien.ycor())
+                random_shooter.setheading(random_alien.heading())
 
     def win(self):
         bottom_screen = any(alien.ycor() < -360 for alien in self.all_aliens)
