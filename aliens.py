@@ -7,6 +7,7 @@ MOVE_DISTANCE = 2
 MOVE_DOWN = 20
 SHOOT_SPEED = 15
 STARTING_POSITION = (-225, 310)
+COLORS = ["#793FDF", "#7091F5", "#97FFF4", "#FFFD8C"]
 
 
 class Aliens:
@@ -20,26 +21,28 @@ class Aliens:
         self.y = y
         for line in range(NUMBER_OF_ROWS):
             for alien in range(NUMBER_OF_ALIENS):
-                self.create_aliens(position=(self.x, self.y))
+                self.create_aliens(position=(self.x, self.y), color=COLORS[line])
                 self.create_shooter(position=(self.x, self.y))
                 self.x += 50
             self.y -= 50
             self.x = -225
         self.move_speed = MOVE_DISTANCE
 
-    def create_aliens(self, position):
+    def create_aliens(self, position, color):
         """Creates alien based on Turtle Object with input position (for x and y coordinates), sets initial
         attributes, adds single object 'alien' to list of objects 'all_aliens'"""
-        alien = Turtle("turtle")
+        alien = Turtle("circle")
+        alien.shapesize(0.7, 1.5)
         alien.penup()
-        alien.color("white")
+        alien.color(color)
         alien.goto(position)
         self.all_aliens.append(alien)
 
     def create_shooter(self, position):
         """Creates alien-shooter based on Turtle Object with input position (for x and y coordinates), sets initial
         attributes, adds single object 'shooter' to list of objects 'all_shooters'"""
-        shooter = Turtle("classic")
+        shooter = Turtle("square")
+        shooter.shapesize(0.1, 0.5)
         shooter.penup()
         shooter.color("white")
         shooter.hideturtle()

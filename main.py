@@ -15,6 +15,7 @@ screen.setup(width=800, height=800)
 screen.bgcolor("black")
 screen.tracer(0)
 
+
 playership = PlayerShip()
 shooter = Shooter()
 aliens = Aliens(y=STARTING_POSITION)
@@ -81,7 +82,7 @@ def barrier_gets_shot():
                     brick.hideturtle()
                     alien_shooting.hideturtle()
             if shooter.isvisible() and shooter.distance(brick) < 25:
-                brick.hdieturtle()
+                brick.hideturtle()
                 shooter.hideturtle()
 
 

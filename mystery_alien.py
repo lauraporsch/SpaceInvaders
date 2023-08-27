@@ -9,10 +9,10 @@ class MysteryAlien(Turtle):
     def __init__(self):
         """Initiates class MysteryAlien, inherits from Turtle super class, sets initial attributes"""
         super().__init__()
-        self.shape("turtle")
-        self.shapesize(2, 2)
+        self.shape("circle")
+        self.shapesize(1, 3)
         self.penup()
-        self.color("white")
+        self.color("#191D88")
         self.hideturtle()
         self.move_speed = MOVE_SPEED
         self.goto(STARTING_POINT)

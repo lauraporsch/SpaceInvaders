@@ -13,7 +13,7 @@ class PlayerShip(Turtle):
         go_to_start()"""
         super().__init__()
         self.shape("square")
-        self.shapesize(stretch_wid=0.5, stretch_len=2)
+        self.shapesize(stretch_wid=0.6, stretch_len=2)
         self.penup()
         self.color("white")
         self.go_to_start()
@@ -44,7 +44,8 @@ class Shooter(Turtle):
     go_to_start()"""
     def __init__(self):
         super().__init__()
-        self.shape("classic")
+        self.shape("square")
+        self.shapesize(0.1, 0.5)
         self.penup()
         self.hideturtle()
         self.color("white")

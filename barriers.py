@@ -26,6 +26,6 @@ class Barrier:
         barrier = Turtle("square")
         barrier.shapesize(0.5, 0.5)
         barrier.penup()
-        barrier.color("white")
+        barrier.color("#CBFFA9")
         barrier.goto(position)
         self.whole_barrier.append(barrier)
