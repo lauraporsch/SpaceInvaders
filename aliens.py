@@ -35,6 +35,7 @@ class Aliens:
         alien.shapesize(0.7, 1.5)
         alien.penup()
         alien.color(color)
+        alien.color_code = color
         alien.goto(position)
         self.all_aliens.append(alien)
 

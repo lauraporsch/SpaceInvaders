@@ -45,7 +45,14 @@ def alien_gets_shot():
             aliens.all_aliens.remove(shot_alien)
             shot_alien.goto(-1000, -1000)
             shooter.hideturtle()
-            score.increase(20)
+            if shot_alien.color_code == "#FFFD8C":
+                score.increase(10)
+            elif shot_alien.color_code == "#97FFF4":
+                score.increase(20)
+            elif shot_alien.color_code == "#7091F5":
+                score.increase(30)
+            elif shot_alien.color_code == "#793FDF":
+                score.increase(40)
 # Turtle Module does not allow to delete single object from the Screen. Workaround: moving object out of visible screen
 
 
