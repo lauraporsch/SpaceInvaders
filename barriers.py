@@ -7,6 +7,7 @@ STARTING_X = [-350, -150, 50, 250]
 
 class Barrier:
     def __init__(self):
+        """Initiates class Barrier, calls function create_barrier() depending on the set length and width"""
         self.whole_barrier = []
         self.y = -250
         for x in STARTING_X:
@@ -20,6 +21,8 @@ class Barrier:
             self.y = -250
 
     def create_barrier(self, position):
+        """Creates barrier based on Turtle Object with input position (for x and y coordinates), sets initial
+        attributes, adds single object 'barrier' to list of objects 'whole barrier'"""
         barrier = Turtle("square")
         barrier.shapesize(0.5, 0.5)
         barrier.penup()
