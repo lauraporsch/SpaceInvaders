@@ -57,7 +57,7 @@ class Aliens:
         for alien in self.all_aliens:
             alien.forward(self.move_speed)
         for shooter in self.all_shooters:
-            if shooter.isvisible():
+            if shooter.heading() == 270:
                 shooter.forward(SHOOT_SPEED)
             else:
                 shooter.forward(self.move_speed)
@@ -80,7 +80,7 @@ class Aliens:
                 alien.setheading(0)
                 alien.sety(alien.ycor() - MOVE_DOWN)
         for shooter in self.all_shooters:
-            if shooter.isvisible():
+            if shooter.heading() == 270:
                 pass
             elif right_screen:
                 shooter.setheading(180)
@@ -108,8 +108,8 @@ class Aliens:
                 random_shooter.showturtle()
             if random_shooter.ycor() < -380:
                 random_shooter.hideturtle()
-                random_shooter.goto(random_alien.xcor(), random_alien.ycor())
-                random_shooter.setheading(random_alien.heading())
+                random_shooter.goto(self.all_aliens[index].xcor(), self.all_aliens[index].ycor())
+                random_shooter.setheading(self.all_aliens[index].heading())
 
     def win(self):
         """Returns True, if any object in list all_aliens reaches the bottom of the screen"""
