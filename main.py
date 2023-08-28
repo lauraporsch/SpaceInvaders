@@ -38,11 +38,13 @@ def shoot():
 
 
 def alien_gets_shot():
-    """If any alien is within 20 pixels of the visible player-shooter, alien gets removed from list, shooter gets
-    hidden and player score increased by 20 points"""
+    """If any alien is within 20 pixels of the visible player-shooter, alien and corresponding shooter gets removed
+    from list, shooter gets hidden and player score increased by 20 points"""
     for shot_alien in aliens.all_aliens:
-        if shooter.isvisible() and shot_alien.distance(shooter) < 20:
+        if shooter.isvisible() and shot_alien.distance(shooter) < 25:
+            index = aliens.all_aliens.index(shot_alien)
             aliens.all_aliens.remove(shot_alien)
+            aliens.all_shooters.remove(aliens.all_shooters[index])
             shot_alien.goto(-1000, -1000)
             shooter.hideturtle()
             if shot_alien.color_code == "#FFFD8C":
@@ -88,7 +90,10 @@ def barrier_gets_shot():
                 if alien_shooting.isvisible() and alien_shooting.distance(brick) < 20:
                     brick.hideturtle()
                     alien_shooting.hideturtle()
-            if shooter.isvisible() and shooter.distance(brick) < 25:
+            if shooter.isvisible() and shooter.distance(brick) < 25 and shooter.xcor() in \
+                    range(brick.xcor()-15, brick.xcor()+15):
+                # if only measured by distance, bricks outside of the actual shooting range would be hit
+                # therefore, added xcor() check
                 brick.hideturtle()
                 shooter.hideturtle()
 

@@ -103,7 +103,7 @@ class Aliens:
             random_alien = random.choice(self.all_aliens)
             index = self.all_aliens.index(random_alien)
             random_shooter = self.all_shooters[index]
-            if not random_shooter.isvisible() and random_shooter.ycor() > -250:
+            if (random_shooter.heading() == 0 or random_shooter.heading() == 90) and random_shooter.ycor() > -250:
                 random_shooter.setheading(270)
                 random_shooter.showturtle()
             if random_shooter.ycor() < -380:
