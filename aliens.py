@@ -106,10 +106,10 @@ class Aliens:
             if (random_shooter.heading() == 0 or random_shooter.heading() == 90) and random_shooter.ycor() > -250:
                 random_shooter.setheading(270)
                 random_shooter.showturtle()
-            if random_shooter.ycor() < -380:
-                random_shooter.hideturtle()
-                random_shooter.goto(self.all_aliens[index].xcor(), self.all_aliens[index].ycor())
-                random_shooter.setheading(self.all_aliens[index].heading())
+                if random_shooter.ycor() < -400:
+                    random_shooter.hideturtle()
+                    random_shooter.goto(self.all_aliens[index].xcor(), self.all_aliens[index].ycor())
+                    random_shooter.setheading(self.all_aliens[index].heading())
 
     def win(self):
         """Returns True, if any object in list all_aliens reaches the bottom of the screen"""
