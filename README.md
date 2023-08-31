@@ -1,7 +1,9 @@
 # SpaceInvaders
-My own version of the famous Space Invaders game, using the turtle module
+My own version of the famous Space Invaders game, using the turtle module.
 
-Currently working on it!
+The challenge was building the main functions of the game with the turtles module.
+As the options are restricted in this module, I used workaround that still give the same gameplay experience.
+
 
 ## What I learned / used for the first time:
 - use any()- function to iterate through a list and see if any item satisfies a condition (used to detect when aliens at the edge hit the screen, so all aliens change direction immediately)
